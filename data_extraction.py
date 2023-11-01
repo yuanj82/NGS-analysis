@@ -1,4 +1,4 @@
-with open("./gene2.counts", "r") as counts:
+with open("./expression.txt", "r") as counts:
     target = [line.strip() for line in counts.readlines()]
 
 with open("./id_list.txt", "r") as id_list:
@@ -7,6 +7,6 @@ with open("./id_list.txt", "r") as id_list:
 with open("result.txt", "w") as result:
     for j in target:
         for i in id:
-            if i in j:
+            if i+'\t' in j:
                 result.write(j + "\n")
                 break
