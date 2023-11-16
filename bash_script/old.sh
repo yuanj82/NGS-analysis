@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## http://www.bio-info-trainee.com/2218.html
 ## https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE50177
 conda activate rna3 # 使用python3 环境

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ############# Environmental preparation #############
 
 conda create -n rna-seq python=3.7

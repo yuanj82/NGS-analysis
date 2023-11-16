@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ############# environmental preparation #############
 
 conda activate rna-seq # 使用RNA-seq环境
