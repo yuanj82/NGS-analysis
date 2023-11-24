@@ -8,9 +8,9 @@ conda activate rna-seq
 
 conda install fastqc trimmomatic hisat2 samtools subread #subread 即 featureCounts
 
-wkd='./project/' # 指定工作目录
+
 projectName='Lp-Cd' # 指定项目名称
-cd $wkd
+
 mkdir $projectName && cd $projectName # 创建项目文件夹
  
 mkdir fastq_gz fastqc_reports clean sorted hisat2 # 创建所需的文件夹
