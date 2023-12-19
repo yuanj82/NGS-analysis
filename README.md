@@ -17,7 +17,14 @@ RNA-seq 中最常用的分析方法就是找出差异表达基因 (Differential 
 # Environment
 
 - 上游分析：成都理工大学超算平台 Red Hat 4.8.5-36
-- 下游分析：Debian GNU/Linux 12 (bookworm) on Windows 10 x86_64 
+- 下游分析：Debian GNU/Linux 12 (bookworm) on Windows 10 x86_64
+
+conda 搭建分析环境：
+
+```bash
+git clone https://github.com/UncleCAT4/RNA-seq.git
+conda env create --file env.yml
+```
 
 # Read more
 
