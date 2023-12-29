@@ -22,7 +22,7 @@ RNA-seq 中最常用的分析方法就是找出差异表达基因 (Differential 
 conda 搭建分析环境：
 
 ```bash
-git clone https://github.com/UncleCAT4/RNA-seq.git
+git clone https://github.com/yuanj82/RNA-seq.git
 conda env create --file env.yml
 ```
 
