@@ -2,8 +2,10 @@
 
 ############# environmental preparation #############
 
-conda activate rna-seq # 使用RNA-seq环境
+conda env create -f env.yml # 建立conda环境
+conda activate genomics # 使用conda环境
 
+mkdir project
 wkd='./project/'
 projectName='Lp-Cd'
 cd $wkd
@@ -15,7 +17,8 @@ mkdir sra fastq_gz fastqc_reports clean sorted
 
 cd sra
 
-cat SRR_Acc_List.txt | while read id; do (prefetch ${id});done
+nohup prefetch -O . $(<SRR_Acc_List.txt) &
+# cat SRR_Acc_List.txt | while read id; do (prefetch ${id});done
 ps -ef | grep prefetch | awk '{print $2}' | while read id; do kill ${id}; done ## kill download processes
  
 cat SRR_Acc_List.txt | while read id; do mv -f $id/$id.sra  ./; done 
@@ -27,7 +30,7 @@ for i in *sra
 do
 	fastq-dump --gzip --split-3 $i -f ../fastq_gz
 done
- 
+
 ############# FastQc quality control #############
 
 cd ../fastq_gz
