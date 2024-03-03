@@ -10,8 +10,8 @@
 conda 环境搭建：
 
 ```bash
-git clone https://github.com/yuanj82/Omics.git
-cd Omics
+git clone https://github.com/yuanj82/genomics.git
+cd genomics
 cp .condarc ~/
 conda env create --file env.yml
 ```
