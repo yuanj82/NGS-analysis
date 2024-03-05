@@ -38,7 +38,7 @@ fpkm[numeric_mask] <- lapply(fpkm[numeric_mask], function(x) ifelse(is.numeric(x
 # fpkm <- fpkm[rowSums(fpkm)>10, ]
 
 # 保证所有小数都转化为整数
-fpkm = apply(fpkm, 2, as.integer)
+fpkm[-1, ] <- apply(fpkm[-1, ], 2, as.integer)
 
 # 如果有缺失值，删除这些行/列
 missing_values <- sum(is.na(fpkm))
