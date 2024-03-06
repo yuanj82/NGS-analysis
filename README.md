@@ -16,6 +16,42 @@ cp .condarc ~/
 conda env create --file env.yml
 ```
 
+# Repository files
+
+```bash
+➜  genomics git:(main) ✗ tree -a -I '.git' ./ 
+./
+├── .condarc
+├── README.md
+├── RNA-seq
+│   ├── downstream
+│   │   ├── DESeq2.r
+│   │   ├── PCA.r
+│   │   ├── bubble.r
+│   │   ├── evolutionary.tree.r
+│   │   ├── fpkm.r
+│   │   ├── hs.cluster
+│   │   │   ├── go.r
+│   │   │   ├── kegg.r
+│   │   │   └── symlbol_yo_entrzeid.r
+│   │   ├── pheatmap.r
+│   │   └── volcano.r
+│   └── upstream
+│       ├── old.sh
+│       ├── single-step
+│       │   ├── clean.sh
+│       │   ├── example_acc_list.txt
+│       │   ├── hista.sh
+│       │   ├── samtools.sh
+│       │   └── subread.sh
+│       └── upstream.sh
+├── env.yml
+└── py_tools
+    └── data_extraction.py
+
+6 directories, 21 files
+```
+
 # Read more
 
 访问我的博客：https://yuanj.top 可以获得更多相关内容。
