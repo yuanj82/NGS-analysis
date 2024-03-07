@@ -7,7 +7,7 @@ conda activate genomics # 使用conda环境
 
 mkdir project
 wkd='./project/'
-projectName='Lp-Cd'
+projectName='project'
 cd $wkd
 mkdir $projectName && cd $projectName
  
