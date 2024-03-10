@@ -12,7 +12,7 @@
 # focal adhesion	0.0617 		2.26E-92	304
 # cell-substrate junction	0.0619 		4.74E-89	305
 
-setwd('./RNA-seq/downstream')
+# setwd('/home/yuanj/work/LP')
 rm(list = ls())  
 Sys.setenv(LANGUAGE = "en")
 
@@ -26,20 +26,20 @@ library(dplyr)
 library(ggplot2)
 library(ggrepel)
 
-Enriched_data <- read.table('./Enriched_data.txt', header = TRUE,  sep = '\t')
+Enriched_data <- read.table('./data.txt', header = TRUE,  sep = '\t')
 
 Enriched_data <- arrange(Enriched_data, Enriched_data[,3])
 
 Enriched_data$Term <- factor(Enriched_data$Term, levels = rev(Enriched_data$Term))
 
 mytheme <- theme(
-    axis.title = element_text(family = "Times_New_Roman", face = "bold", size = 25, colour = "black"),
-    axis.text = element_text(family = "Times_New_Roman", face = "bold", size = 25, colour = "black"), 
+    axis.title = element_text(family = "Times_New_Roman", face = "bold", size = 50, colour = "black"),   # 横纵轴数据标题字体大小
+    axis.text = element_text(family = "Times_New_Roman", face = "bold", size = 45, colour = "black"),    # term和标尺字体大小
     axis.line = element_line(size = 0.2, colour = "black"), 
     panel.background = element_rect(colour = "black"),
     legend.key = element_blank(),
-    legend.title = element_text(family = "Times_New_Roman", face = "bold", size = 30),
-    legend.text = element_text(family = "Times_New_Roman", face = "bold", size = 25),
+    legend.title = element_text(family = "Times_New_Roman", face = "bold", size = 45),
+    legend.text = element_text(family = "Times_New_Roman", face = "bold", size = 45),
     # legend.spacing.y = unit(0.5, "cm")  # 调整标尺与图形的距离
 )
 
@@ -58,9 +58,9 @@ p <- ggplot(
     ylab("Terms")+
     xlab("Fold.Enrichment")+
     labs(color = expression(-log[10](PValue)))+
-    theme(legend.title = element_text(margin = margin(r = 30)), axis.title.x = element_text(margin = margin(t = 20)))+   # 图例与图像界面右边距
+    theme(legend.title = element_text(margin = margin(r = 20)), axis.title.x = element_text(margin = margin(t = 20)))+   # 图例与图像界面右边距
     theme(axis.text.x = element_text(family = "Times_New_Roman", face = "bold", colour = "black", angle = 0, vjust = 1))
 plot <- p + mytheme
 plot
 
-ggsave(plot, filename = "bubble.png", width = 7, height = 7, dpi = 300)
+ggsave(plot, filename = "bubble.png", width = 6, height = 6, dpi = 600)
