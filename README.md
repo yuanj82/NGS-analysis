@@ -10,8 +10,8 @@
 conda 环境搭建：
 
 ```bash
-git clone https://github.com/yuanj82/genomics.git
-cd genomics
+git clone https://github.com/yuanj82/NGS-analysis.git
+cd NGS-analysis
 cp .condarc ~/
 conda env create --file env.yml
 ```
@@ -19,7 +19,7 @@ conda env create --file env.yml
 # Repository files
 
 ```bash
-➜  genomics git:(main) ✗ tree -a -I '.git' ./ 
+➜  NGS-analysis git:(main) ✗ tree -a -I '.git' ./ 
 ./
 ├── .condarc
 ├── README.md
