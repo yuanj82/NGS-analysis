@@ -54,7 +54,10 @@ conda env create --file env.yml
 
 # Read more
 
-访问我的博客：https://yuanj.top 可以获得更多相关内容。
+- [转录组学分析基础——测序技术](https://yuanj.top/posts/h6g6c2i2/)
+- [专题：RNA-Seq 上游分析学习](https://yuanj.top/posts/z6q5z7s5/)
+- [RNA Seq 上游分析实践](https://yuanj.top/posts/j9t9v3y1/)
+- [详解 ATAC-Seq](https://yuanj.top/posts/x5v6u9k6/)
 
 # Special Thanks
 
