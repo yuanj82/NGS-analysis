@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 ############# environmental preparation #############
 
 conda activate RNA-seq # 使用conda环境
@@ -25,14 +27,7 @@ done
  
 ############# sra to fastq #############
 
-for i in *sra
-do
-	fastq-dump \
-    --gzip \
-    --split-3 \
-    ${i} \
-    -f ../fastqgz
-done
+ls *.sra | parallel fastq-dump --gzip --split-3 {} --outdir ../fastqgz
 
 ############# FastQc quality control #############
 
@@ -93,7 +88,7 @@ mv ${id}.bam ../sorted
 ############# featureCounts #####
 
 cd ../sorted
-bam="../sorted/$1"
+bam=$(ls *)
 gtf='../oryza_sativa.gff3'
 featureCounts \
 -T 5 \
