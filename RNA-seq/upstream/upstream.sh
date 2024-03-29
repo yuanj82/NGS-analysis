@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -o pipefail
 
 ############# environmental preparation #############
 
@@ -12,19 +13,21 @@ projectName='project'
 cd $wkd
 mkdir $projectName && cd $projectName
 
+# SRR_Acc_List.txt文件放在project根目录便于调用
 mkdir sra fastq_gz fastqc_reports clean sorted genome_index compared
 
 ############# data preparation #############
 
 cd sra
 
-nohup prefetch -O . $(<SRR_Acc_List.txt) &  # 将进程挂在后台进行
+nohup prefetch -O . $(<SRR_Acc_List.txt) &
+wait # 等待prefetch完成
 
 cat SRR_Acc_List.txt | while read id; do
     mv -f "${id}/${id}.sra" ./
     rm -rf "${id}"
 done
- 
+
 ############# sra to fastq #############
 
 ls *.sra | parallel fastq-dump --gzip --split-3 {} --outdir ../fastqgz
@@ -34,12 +37,12 @@ ls *.sra | parallel fastq-dump --gzip --split-3 {} --outdir ../fastqgz
 cd ../fastq_gz
 ls *.fastq.gz | xargs fastqc -t 2 -O ../fastqc_reports
 cd ../fastqc_reports && multiqc ./  # 合并质量检测报告
-    
+
 ############# Trim_galore filtering sequence #############
 
 cd ../fastq_gz
 
-cat SRR_Acc_List.txt | while read id; do 
+cat ../SRR_Acc_List.txt | while read id; do 
     nohup trim_galore \
     -q 20 \
     --length 36 \
@@ -48,8 +51,9 @@ cat SRR_Acc_List.txt | while read id; do
     --fastqc \
     --paired \
     -o ../clean/ \
-    ${id}_1.fastq.gz ${id}_2.fastq.gz & 
+    ${id}_1.fastq.gz ${id}_2.fastq.gz &
 done
+wait # 等待trim_galore完成
 
 ############# Reply to reference genome #############
 
@@ -58,8 +62,9 @@ species='oryza_sativa'
 cd ../genome_index
 
 nohup hisat2-build -p 4 ${genome} ${species} &
+wait # 等待hisat2-build完成
 
-less ../SRR_Acc_List.txt | while read id;
+cat ../SRR_Acc_List.txt | while read id;
 do
     hisat2 \
     -x ${species}/${species} \
@@ -74,7 +79,7 @@ mv *.sam ../compared
 ############# sam to bam #############
 
 cd ../compared
-ls *.sam | while read id ;do
+cat ../SRR_Acc_List.txt | while read id ;do
     samtools \
     sort \
     -n -@ 5 \
@@ -84,7 +89,7 @@ done
 
 rm *.sam
 mv ${id}.bam ../sorted
- 
+
 ############# featureCounts #####
 
 cd ../sorted
@@ -97,5 +102,3 @@ featureCounts \
 -a ${gtf} \
 -o gene_name.counts \
 -p ${bam}
-
-
