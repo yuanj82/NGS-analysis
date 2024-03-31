@@ -28,7 +28,7 @@ done
 
 ############# sra to fastq #############
 
-ls *.sra | parallel fastq-dump --gzip --split-3 {} --outdir ./fastqgz
+nohup fastq-dump --gzip --split-3 ./sra/*.sra --outdir ./fastqgz &
 
 ############# FastQc quality control #############
 
