@@ -18,8 +18,7 @@ mkdir sra fastq_gz fastqc_reports clean sorted genome_index compared
 
 ############# data preparation #############
 
-nohup prefetch -O . $(<SRR_Acc_List.txt) &
-wait # 等待prefetch完成
+prefetch -O . $(<SRR_Acc_List.txt) 
 
 cat ./SRR_Acc_List.txt | while read id; do
     mv -f "${id}/${id}.sra" ./sra
@@ -28,7 +27,8 @@ done
 
 ############# sra to fastq #############
 
-ls *.sra | parallel fastq-dump --gzip --split-3 {} --outdir ./fastqgz
+nohup fastq-dump --gzip --split-3 ./sra/*.sra --outdir ./fastqgz &
+wait
 
 ############# FastQc quality control #############
 
