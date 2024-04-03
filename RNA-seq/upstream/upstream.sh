@@ -90,5 +90,5 @@ featureCounts \
 -t exon \
 -g Name \
 -a ${gtf} \
--o gene_name.counts \
+-o counts \
 -p ${bam}

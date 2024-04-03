@@ -73,4 +73,4 @@ result1 <- data.frame(sampl1_vs_sample2, stringsAsFactors = FALSE, check.names =
 result2 <- data.frame(sampl3_vs_sample4, stringsAsFactors = FALSE, check.names = FALSE)
 
 write.table(result1, 'sampl1_vs_sample2.DESeq2.txt', col.names = NA, sep = '\t', quote = FALSE)
-write.table(result2, 'sampl3_vs_sample3.DESeq4.txt', col.names = NA, sep = '\t', quote = FALSE)
+write.table(result2, 'sampl3_vs_sample3.DESeq2.txt', col.names = NA, sep = '\t', quote = FALSE)
