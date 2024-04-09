@@ -26,3 +26,7 @@ conda env create --file atac-seq-env.yml  # ATAC-seq
 - [RNA-seq 上游分析学习](./docs/RNA-seq上游分析学习.md)
 - [RNA-seq 上游分析实践](./docs/RNA-seq上游分析实践.md)
 - [详解 ATAC-seq](./docs/详解ATAC-seq.md)
+- [单细胞转录组技术综述](./docs/单细胞转录组技术综述.md)
+- [表观遗传学之 Chip-Seq](./docs/表观遗传学之Chip-seq.md)
+- [表观遗传学之 WGBS](./docs/表观遗传学之WGBS.md)
+- [挖掘 TFBS 的利器——DAP-Seq](./docs/挖掘TFBS的利器——DAP-seq.md)
