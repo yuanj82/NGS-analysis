@@ -38,7 +38,7 @@ multiqc ./fastqc_report  # 合并质量检测报告
 ############# Trim_galore filtering sequence #############
 
 cat ./SRR_Acc_List.txt | while read id; do 
-    nohup trim_galore \
+    trim_galore \
     -q 20 \
     --length 36 \
     --max_n 3 \
@@ -46,9 +46,8 @@ cat ./SRR_Acc_List.txt | while read id; do
     --fastqc \
     --paired \
     -o ./clean/ \
-    ./fastqgz/${id}_1.fastq.gz ./fastqgz/${id}_2.fastq.gz &
+    ./fastqgz/${id}_1.fastq.gz ./fastqgz/${id}_2.fastq.gz
 done
-wait # 等待trim_galore完成
 
 ############# Reply to reference genome #############
 
