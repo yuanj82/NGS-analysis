@@ -79,11 +79,22 @@ cat ./SRR_Acc_List.txt | while read id ;do
     -o ./sorted/${id}.bam
 done
 
+
+############# Transcript assembly #############
+
+
+gtf='../oryza_sativa.gff3'   # 基因组文件路径（需提前下载解压）
+
+cat ./SRR_Acc_List.txt | while read id ;do
+    stringtie -p 8 -G ${gtf} \
+    -o assembled.gtf \
+    ./sorted/${id}.bam
+done
+
 ############# featureCounts #####
 
 cd ./sorted
 bam=$(ls *)
-gtf='../oryza_sativa.gff3'
 featureCounts \
 -T 5 \
 -t exon \
