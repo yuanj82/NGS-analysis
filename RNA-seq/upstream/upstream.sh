@@ -79,9 +79,7 @@ cat ./SRR_Acc_List.txt | while read id ;do
     -o ./sorted/${id}.bam
 done
 
-
 ############# Transcript assembly #############
-
 
 gtf='../oryza_sativa.gff3'   # 基因组文件路径（需提前下载解压）
 
