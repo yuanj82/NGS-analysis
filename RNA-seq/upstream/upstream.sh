@@ -73,9 +73,11 @@ done
 
 cat ./SRR_Acc_List.txt | while read id ;do
     samtools \
+    view \
+    -@ 4 \
+    -bS ./compared/${id}.sam | samtools \
     sort \
-    -n -@ 5 \
-    ./compared/${id}.sam \
+    -@ 4 \
     -o ./sorted/${id}.bam
 done
 
@@ -96,7 +98,7 @@ bam=$(ls *)
 featureCounts \
 -T 5 \
 -t exon \
--g Name \
+-g Parent \
 -a ${gtf} \
 -o counts \
 -p ${bam}
